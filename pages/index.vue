@@ -3,18 +3,21 @@
   Promo
   Intro(title="My last posts")
   Posts(:posts="posts")
+  Contacts
 </template>
 
 <script>
 import Promo from "@/components/Promo.vue";
 import Intro from "@/components/UI/Intro.vue";
 import Posts from "@/components/Blog/Posts.vue";
+import Contacts from "@/components/Contacts.vue";
 
 export default {
   components: {
     Promo,
     Intro,
-    Posts
+    Posts,
+    Contacts
   },
   data () {
     return {
