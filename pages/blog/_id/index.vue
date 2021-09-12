@@ -30,9 +30,11 @@ export default {
 
 <style lang="scss">
 .post {
+  max-width: 900px;
+  margin: 0 auto;
+
   &__header {
     margin: 0 auto;
-    max-width: 900px;
 
     h1 {
       margin: 32px 0;
@@ -41,6 +43,7 @@ export default {
 
     p {
       margin: 24px 0;
+      color: gray;
     }
   }
 }
