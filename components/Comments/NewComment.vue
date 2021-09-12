@@ -8,11 +8,14 @@ section.new-comment
       label Message:
       textarea(v-model="comment.text")
       .new-comment__control
-        button.btn.btnPrimary Submit
+        AppButton Submit
 </template>
 
 <script>
+import AppButton from "@/components/UI/Controls/Button.vue";
+
 export default {
+  components: { AppButton },
   data () {
     return {
       comment: {

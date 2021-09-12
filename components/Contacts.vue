@@ -10,11 +10,14 @@ section.contacts
       label Message:
       textarea(v-model="user.text")
       .contacts__control
-        button.btn.btnWhite Submit
+        AppButton.btnWhite Submit
 </template>
 
 <script>
+import AppButton from "@/components/UI/Controls/Button.vue";
+
 export default {
+  components: { AppButton },
   data () {
     return {
       user: {
