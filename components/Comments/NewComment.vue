@@ -3,19 +3,19 @@ section.new-comment
   .container
     h2.title New comment:
     form.new-comment__form(@submit.prevent="onSubmit")
-      label Name:
-      input(v-model="comment.name")
-      label Message:
-      textarea(v-model="comment.text")
+      AppInput(v-model="comment.name") Name:
+      AppTextarea(v-model="comment.text") Message:
       .new-comment__control
         AppButton Submit
 </template>
 
 <script>
+import AppInput from "@/components/UI/Controls/Input.vue";
+import AppTextarea from "@/components/UI/Controls/Textarea.vue";
 import AppButton from "@/components/UI/Controls/Button.vue";
 
 export default {
-  components: { AppButton },
+  components: { AppInput, AppTextarea, AppButton },
   data () {
     return {
       comment: {

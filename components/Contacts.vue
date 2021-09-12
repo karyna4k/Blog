@@ -3,21 +3,20 @@ section.contacts
   .container
     h2.title Contacts me!
     form.contacts__form(@submit.prevent="onSubmit")
-      label Name:
-      input(v-model="user.name")
-      label Email:
-      input(v-model="user.email")
-      label Message:
-      textarea(v-model="user.text")
+      AppInput(v-model="user.name") Name:
+      AppInput(v-model="user.email" type="email") Email:
+      AppTextarea(v-model="user.text") Message:
       .contacts__control
         AppButton.btnWhite Submit
 </template>
 
 <script>
+import AppInput from "@/components/UI/Controls/Input.vue";
+import AppTextarea from "@/components/UI/Controls/Textarea.vue";
 import AppButton from "@/components/UI/Controls/Button.vue";
 
 export default {
-  components: { AppButton },
+  components: { AppInput, AppTextarea, AppButton },
   data () {
     return {
       user: {
