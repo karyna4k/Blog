@@ -2,7 +2,7 @@
 .wrapper-content.wrapper-content--fixed
   Post(:post="post")
   Comments(:comments="comments")
-  NewComment(:comment="comment")
+  NewComment
 </template>
 
 <script>
