@@ -1,5 +1,5 @@
 <template lang="pug">
-.post-preview
+nuxt-link.post-preview(:to="/blog/ + post.id")
   img(:src="post.img", :alt="post.title")
   .post-content
     h3.title {{ post.title }}
@@ -20,5 +20,11 @@ export default {
 <style lang="scss">
 .post-preview {
   width: calc((100% - 40px * 2) / 3);
+}
+
+.post-content {
+  p {
+    color: gray;
+  }
 }
 </style>
