@@ -2,6 +2,7 @@
 section.new-comment
   .container
     h2.title New comment:
+    Message(v-if="message", :message="message")
     form.new-comment__form(@submit.prevent="onSubmit")
       AppInput(v-model="comment.name") Name:
       AppTextarea(v-model="comment.text") Message:
@@ -10,25 +11,30 @@ section.new-comment
 </template>
 
 <script>
+import Message from "@/components/UI/Message.vue";
 import AppInput from "@/components/UI/Controls/Input.vue";
 import AppTextarea from "@/components/UI/Controls/Textarea.vue";
 import AppButton from "@/components/UI/Controls/Button.vue";
 
 export default {
-  components: { AppInput, AppTextarea, AppButton },
+  components: { Message, AppInput, AppTextarea, AppButton },
   data () {
     return {
+      message: null,
       comment: {
         name: "",
-        text: "",
-      },
+        text: ""
+      }
     };
   },
   methods: {
     onSubmit () {
-      console.log(this.comment);
-    },
-  },
+      this.message = "Submitted!";
+      // Reset
+      this.comment.name = "";
+      this.comment.text = "";
+    }
+  }
 };
 </script>
 

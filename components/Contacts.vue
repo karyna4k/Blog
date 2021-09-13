@@ -2,35 +2,42 @@
 section.contacts
   .container
     h2.title Contacts me!
+    Message(v-if="message", :message="message")
     form.contacts__form(@submit.prevent="onSubmit")
       AppInput(v-model="user.name") Name:
-      AppInput(v-model="user.email" type="email") Email:
+      AppInput(v-model="user.email", type="email") Email:
       AppTextarea(v-model="user.text") Message:
       .contacts__control
         AppButton.btnWhite Submit
 </template>
 
 <script>
+import Message from "@/components/UI/Message.vue";
 import AppInput from "@/components/UI/Controls/Input.vue";
 import AppTextarea from "@/components/UI/Controls/Textarea.vue";
 import AppButton from "@/components/UI/Controls/Button.vue";
 
 export default {
-  components: { AppInput, AppTextarea, AppButton },
+  components: { Message, AppInput, AppTextarea, AppButton },
   data () {
     return {
+      message: null,
       user: {
         name: "",
         email: "",
-        text: "",
-      },
+        text: ""
+      }
     };
   },
   methods: {
     onSubmit () {
-      console.log(this.user);
-    },
-  },
+      this.message = "Submitted!";
+      // Reset
+      this.user.name = "";
+      this.user.email = "";
+      this.user.text = "";
+    }
+  }
 };
 </script>
 
