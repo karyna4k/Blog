@@ -5,14 +5,7 @@
 </template>
 
 <script>
-import Intro from "@/components/UI/Intro.vue";
-import Posts from "@/components/Blog/Posts.vue";
-
 export default {
-  components: {
-    Intro,
-    Posts,
-  },
   data () {
     return {
       posts: [

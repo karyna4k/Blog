@@ -11,13 +11,8 @@ section.new-comment
 </template>
 
 <script>
-import Message from "@/components/UI/Message.vue";
-import AppInput from "@/components/UI/Controls/Input.vue";
-import AppTextarea from "@/components/UI/Controls/Textarea.vue";
-import AppButton from "@/components/UI/Controls/Button.vue";
 
 export default {
-  components: { Message, AppInput, AppTextarea, AppButton },
   data () {
     return {
       message: null,
