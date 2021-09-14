@@ -2,6 +2,7 @@
 section.intro
   .container
     h2 {{ title }}
+    slot
 </template>
 
 <script>
