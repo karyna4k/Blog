@@ -1,5 +1,5 @@
 <template lang="pug">
-Posts(:posts="posts")
+Posts(:posts="posts" :admin="true")
 </template>
 
 <script>

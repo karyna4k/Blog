@@ -2,7 +2,7 @@
 section.posts
   .container
     .posts__wrapper
-      PostPreview(v-for="post in posts", :key="post.id", :post="post")
+      PostPreview(v-for="post in posts", :key="post.id", :post="post" :admin="admin")
 </template>
 
 <script>
@@ -17,6 +17,10 @@ export default {
       type: Array,
       required: true,
     },
+    admin: {
+      type: Boolean,
+      default: false
+    }
   },
 };
 </script>
