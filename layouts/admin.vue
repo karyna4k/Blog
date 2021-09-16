@@ -5,6 +5,7 @@
     Intro(title="Admin page")
       nuxt-link.link.linkWhite(to="/admin") Admin
       nuxt-link.link.linkWhite(to="/admin/new-post") New post
+      nuxt-link.link.linkWhite(to="/admin/comments") Comments
     nuxt
 </template>
 
