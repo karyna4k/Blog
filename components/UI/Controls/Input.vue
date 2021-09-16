@@ -2,7 +2,7 @@
   .control
     label
       slot
-    input(v-bind="$attrs" :value="value" :type="type" @input="$emit('input', $event.target.value)")
+    input(v-bind="$attrs" :value="value" :required="required" :type="type" @input="$emit('input', $event.target.value)")
 </template>
 
 <script>
@@ -15,6 +15,10 @@ export default {
     type: {
       type: String,
       default: "text"
+    },
+    required: {
+      type: Boolean,
+      default: true
     }
   }
 };
