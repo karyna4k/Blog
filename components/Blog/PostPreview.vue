@@ -34,6 +34,7 @@ export default {
 .post-content {
   p {
     color: gray;
+    font-size: 16px;
   }
 }
 </style>
