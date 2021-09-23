@@ -10,6 +10,10 @@ export const mutations = {
   },
   addPost (state, post) {
     state.postsLoaded.push(post);
+  },
+  editPost (state, postEdit) {
+    const postIndex = state.postsLoaded.findIndex(post => post.id === postEdit.id);
+    state.postsLoaded[postIndex] = postEdit;
   }
 };
 
@@ -39,6 +43,12 @@ export const actions = {
     } catch (e) {
       // console.log(e);
     }
+  },
+  editPost ({ commit }, post) {
+    return axios.put(`https://blog-nuxt-321ac-default-rtdb.firebaseio.com/posts/${post.id}.json`, post)
+      .then((res) => {
+        commit("editPost", post);
+      });
   }
 };
 
