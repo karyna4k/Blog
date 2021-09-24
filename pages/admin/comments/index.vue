@@ -1,21 +1,23 @@
 <template lang="pug">
-CommentTable(:thead="['Name', 'Text', 'Status', 'Change Status', 'Delete']")
-  tbody(slot="tbody")
-    tr(v-for="comment in comments" :key="comment.id")
-      td
-        span {{comment.name}}
-      td
-        span {{comment.text}}
-      td
-        span(v-if="comment.status" class="status true") Publish
-        span(v-else class="status false") Hidden
-      td
-        span(@click="changeStatus(comment.id)" class="link") Change status
-      td
-        span(@click="deleteComment(comment.id)" class="link") Delete
+client-only
+  CommentTable(:thead="['Name', 'Text', 'Status', 'Change Status', 'Delete']")
+    tbody(slot="tbody")
+      tr(v-for="comment in comments", :key="comment.id")
+        td
+          span {{ comment.name }}
+        td
+          span {{ comment.text }}
+        td
+          span.status.true(v-if="comment.publish") Publish
+          span.status.false(v-else) Hidden
+        td
+          span.link(@click="changeStatus(comment)") Change status
+        td
+          span.link(@click="deleteComment(comment.id)") Delete
 </template>
 
 <script>
+import axios from "axios";
 import CommentTable from "@/components/Admin/CommentTable.vue";
 
 export default {
@@ -23,28 +25,42 @@ export default {
   layout: "admin",
   data () {
     return {
-      comments: [
-        {
-          id: 1,
-          name: "Alex",
-          text: "Не следует, однако, забывать, что существующая теория обеспечивает широкому кругу (специалистов) участие в формировании модели развития.",
-          status: true
-        },
-        {
-          id: 2,
-          name: "Kate",
-          text: "Не следует, однако, забывать, что существующая теория обеспечивает широкому кругу (специалистов) участие в формировании модели развития.",
-          status: false
-        },
-      ],
+      comments: []
     };
   },
+  mounted () {
+    this.loadComments();
+  },
   methods: {
-    changeStatus (id) {
-      console.log(`Change comment status id ${id}`);
+    loadComments () {
+      axios
+        .get(
+          "https://blog-nuxt-321ac-default-rtdb.firebaseio.com/comments.json"
+        )
+        .then((res) => {
+          const commentsArray = [];
+
+          Object.keys(res.data).forEach((key) => {
+            const comment = res.data[key];
+            commentsArray.push({ ...comment, id: key });
+          });
+
+          this.comments = commentsArray;
+        });
+    },
+    changeStatus (comment) {
+      comment.publish = !comment.publish;
+      axios.put(
+        `https://blog-nuxt-321ac-default-rtdb.firebaseio.com/comments/${comment.id}.json`,
+        comment
+      );
     },
     deleteComment (id) {
-      console.log(`Delete comment id ${id}`);
+      axios
+        .delete(
+          `https://blog-nuxt-321ac-default-rtdb.firebaseio.com/comments/${id}.json`
+        )
+        .then(res => this.loadComments());
     }
   }
 };

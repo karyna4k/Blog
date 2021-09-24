@@ -32,17 +32,14 @@ export default {
     onSubmit () {
       this.$store.dispatch("addComment", {
         postId: this.postId,
-        publish: true,
+        publish: false,
         ...this.comment
       })
         .then(() => {
-          this.message = "Submitted!";
+          this.message = "The comment has been sent for moderation";
           // Reset
           this.comment.name = "";
           this.comment.text = "";
-        })
-        .catch((e) => {
-          console.log(e);
         });
     }
   }
@@ -56,7 +53,7 @@ export default {
   }
 
   &__form {
-    max-width: 600px;
+    max-width: 900px;
     margin: 30px auto;
   }
 
