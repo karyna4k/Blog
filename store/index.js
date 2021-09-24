@@ -2,6 +2,7 @@ import axios from "axios";
 
 export const state = () => ({
   postsLoaded: [],
+  commentsLoaded: []
 });
 
 export const mutations = {
@@ -14,6 +15,10 @@ export const mutations = {
   editPost (state, postEdit) {
     const postIndex = state.postsLoaded.findIndex(post => post.id === postEdit.id);
     state.postsLoaded[postIndex] = postEdit;
+  },
+  addComment (state, comment) {
+    console.log(comment);
+    state.commentsLoaded.push(comment);
   }
 };
 
@@ -48,6 +53,12 @@ export const actions = {
     return axios.put(`https://blog-nuxt-321ac-default-rtdb.firebaseio.com/posts/${post.id}.json`, post)
       .then((res) => {
         commit("editPost", post);
+      });
+  },
+  addComment ({ commit }, comment) {
+    return axios.post("https://blog-nuxt-321ac-default-rtdb.firebaseio.com/comments.json", comment)
+      .then((res) => {
+        commit("addComment", { ...comment, id: res.data.name });
       });
   }
 };

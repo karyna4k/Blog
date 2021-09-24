@@ -24,10 +24,20 @@ export default {
   },
   methods: {
     onSubmit () {
-      this.message = "Submitted!";
-      // Reset
-      this.comment.name = "";
-      this.comment.text = "";
+      this.$store.dispatch("addComment", {
+        postId: "",
+        publish: false,
+        ...this.comment
+      })
+        .then(() => {
+          this.message = "Submitted!";
+          // Reset
+          this.comment.name = "";
+          this.comment.text = "";
+        })
+        .catch((e) => {
+          console.log(e);
+        });
     }
   }
 };
