@@ -17,7 +17,6 @@ export const mutations = {
     state.postsLoaded[postIndex] = postEdit;
   },
   addComment (state, comment) {
-    console.log(comment);
     state.commentsLoaded.push(comment);
   }
 };
