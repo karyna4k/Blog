@@ -2,6 +2,7 @@
 section.comments(v-if="comments")
   .container
     h2.title Comments:
+    p(v-if="comments.length === 0") There are no comments
     .comments__item.comment(v-for="comment in comments")
       .comment__name {{ comment.name }}
       .comment__text {{ comment.text }}
@@ -12,9 +13,9 @@ export default {
   props: {
     comments: {
       type: Array,
-      default: null,
-    },
-  },
+      default: null
+    }
+  }
 };
 </script>
 
@@ -25,6 +26,11 @@ export default {
   margin: 0 auto;
 
   h2 {
+    text-align: center;
+  }
+
+  p {
+    margin: 8px 0;
     text-align: center;
   }
 }
