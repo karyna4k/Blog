@@ -20,8 +20,13 @@ export default {
 
 <style lang="scss">
 .comments {
-  margin: 0 auto;
   max-width: 900px;
+  width: 100%;
+  margin: 0 auto;
+
+  h2 {
+    text-align: center;
+  }
 }
 
 .comment {
