@@ -23,11 +23,7 @@ export default {
       this.$store
         .dispatch("authUser", this.user)
         .then((res) => {
-          console.log(res);
-
-          // reset
-          this.user.email = "";
-          this.user.password = "";
+          this.$router.push("/admin");
         })
         .catch((error) => {
           if (error.response) {
@@ -37,6 +33,10 @@ export default {
           } else {
             console.log("Error", error.message);
           }
+
+          // reset
+          this.user.email = "";
+          this.user.password = "";
         });
     }
   }
