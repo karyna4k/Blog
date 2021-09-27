@@ -36,6 +36,15 @@ export const actions = {
       // console.log(e);
     }
   },
+  authUser ({ commit }, authData) {
+    const key = "AIzaSyBWeyVzQvT4vWPOetPwkl1EOb1VFAAT8oI";
+
+    return axios.post(`https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=${key}`, {
+      email: authData.email,
+      password: authData.password,
+      returnSecureToken: true
+    });
+  },
   async addPost ({ commit }, post) {
     try {
       const res = await axios

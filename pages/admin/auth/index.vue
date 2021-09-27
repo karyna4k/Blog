@@ -2,8 +2,8 @@
 section.auth
   .container
     form.auth__form(@submit.prevent="onSubmit")
-      AppInput(v-model="user.email" type="email") Login:
-      AppInput(v-model="user.password" type="password") Password:
+      AppInput(v-model="user.email", type="email") Email:
+      AppInput(v-model="user.password", type="password") Password:
       .controls
         AppButton Login
 </template>
@@ -20,9 +20,24 @@ export default {
   },
   methods: {
     onSubmit () {
-      // reset
-      this.user.email = "";
-      this.user.password = "";
+      this.$store
+        .dispatch("authUser", this.user)
+        .then((res) => {
+          console.log(res);
+
+          // reset
+          this.user.email = "";
+          this.user.password = "";
+        })
+        .catch((error) => {
+          if (error.response) {
+            console.log(error.response.data);
+          } else if (error.request) {
+            console.log(error.request);
+          } else {
+            console.log("Error", error.message);
+          }
+        });
     }
   }
 };
