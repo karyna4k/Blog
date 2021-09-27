@@ -6,6 +6,7 @@
       nuxt-link.link.linkWhite(to="/admin") Admin
       nuxt-link.link.linkWhite(to="/admin/new-post") New post
       nuxt-link.link.linkWhite(to="/admin/comments") Comments
+      span.link.linkWhite(@click="logoutUser") Logout
     nuxt
 </template>
 
@@ -14,6 +15,14 @@ import Header from "~/components/system/Header.vue";
 
 export default {
   components: { Header },
-  middleware: ["auth"]
+  middleware: ["auth"],
+  methods: {
+    logoutUser () {
+      this.$store.dispatch("logoutUser")
+        .then(() => {
+          this.$router.push("/admin/auth");
+        });
+    }
+  }
 };
 </script>
