@@ -51,21 +51,36 @@ export default {
 
 <style lang="scss">
 .post {
-  max-width: 900px;
   margin: 0 auto;
 
+  &__wrapper {
+    display: flex;
+    gap: 32px;
+  }
+
   &__header {
+    flex-grow: 1;
     margin: 0 auto;
 
-    h1 {
-      margin: 32px 0;
-      text-align: center;
+    img {
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
     }
+  }
 
-    p {
-      margin: 24px 0;
-      color: gray;
-    }
+  &__body {
+    max-width: 35%;
+  }
+
+  &__title {
+    margin: 32px 0;
+    text-align: center;
+  }
+
+  &__descr {
+    margin: 24px 0;
+    color: gray;
   }
 }
 </style>
