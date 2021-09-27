@@ -26,7 +26,26 @@ export default {
       post: post.data,
       comments: commentsArrayRes
     };
-  }
+  },
+  head () {
+    const title = this.post.title;
+    const descr = this.post.descr;
+    const img = this.post.img;
+    const type = "article";
+
+    return {
+
+      title,
+      meta: [
+        { hid: "og: title", name: "og: title", content: title },
+        { hid: "description", name: "description", content: descr },
+        { hid: "og:description", name: "og:description", content: descr },
+        { hid: "og:type", name: "og:type", content: type },
+        { hid: "og:img", name: "og:img", content: img },
+      ]
+    };
+  },
+
 };
 </script>
 
