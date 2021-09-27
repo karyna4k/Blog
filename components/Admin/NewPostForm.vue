@@ -1,14 +1,14 @@
 <template lang="pug">
 section.new-post
   .container
-    form(@submit.prevent)
+    form(@submit.prevent="onSubmit")
       AppInput(v-model="post.title") Title:
       AppInput(v-model="post.descr") Description:
       AppInput(v-model="post.img") Img link:
       AppTextarea(v-model="post.content") Content:
       .controls
-        AppButton.btnDanger(@click="cancel") Cancel
-        AppButton(@click="onSubmit") Save
+        .btn.btnDanger(@click="cancel") Cancel
+        AppButton Save
 </template>
 
 <script>
