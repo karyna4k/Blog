@@ -1,8 +1,9 @@
 <template lang="pug">
 .wrapper-content.wrapper-content--fixed
   Post(:post="post")
-  Comments(:comments="comments")
-  NewComment(:postId="$route.params.id")
+  client-only
+    Comments(:comments="comments")
+    NewComment(:postId="$route.params.id")
 </template>
 
 <script>

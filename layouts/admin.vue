@@ -1,13 +1,14 @@
 <template lang="pug">
-.wrapper
-  Header
-  .wrapper-content.wrapper-content--fixed
-    Intro(title="Admin page")
-      nuxt-link.link.linkWhite(to="/admin") Admin
-      nuxt-link.link.linkWhite(to="/admin/new-post") New post
-      nuxt-link.link.linkWhite(to="/admin/comments") Comments
-      span.link.linkWhite(@click="logoutUser") Logout
-    nuxt
+client-only
+  .wrapper
+    Header
+    .wrapper-content.wrapper-content--fixed
+      Intro(title="Admin page")
+        nuxt-link.link.linkWhite(to="/admin") Admin
+        nuxt-link.link.linkWhite(to="/admin/new-post") New post
+        nuxt-link.link.linkWhite(to="/admin/comments") Comments
+        span.link.linkWhite(@click="logoutUser") Logout
+      nuxt
 </template>
 
 <script>
@@ -18,11 +19,10 @@ export default {
   middleware: ["auth"],
   methods: {
     logoutUser () {
-      this.$store.dispatch("logoutUser")
-        .then(() => {
-          this.$router.push("/admin/auth");
-        });
-    }
-  }
+      this.$store.dispatch("logoutUser").then(() => {
+        this.$router.push("/admin/auth");
+      });
+    },
+  },
 };
 </script>
