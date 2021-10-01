@@ -1,3 +1,5 @@
+import axios from "axios";
+
 export default {
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
@@ -40,5 +42,23 @@ export default {
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
     vendor: ["axios"]
+  },
+
+  generate: {
+    routes () {
+      return axios
+        .get("https://blog-nuxt-321ac-default-rtdb.firebaseio.com/posts.json")
+        .then((res) => {
+          // Get id
+          const postsArray = [];
+          for (const key in res.data) {
+            postsArray.push({ ...res.data[key], id: key });
+          }
+          // Routes
+          return postsArray.map((post) => {
+            return "/blog/" + post.id;
+          });
+        });
+    }
   }
 };
