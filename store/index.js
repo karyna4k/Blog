@@ -48,12 +48,23 @@ export const actions = {
       returnSecureToken: true
     })
       .then((res) => {
-        commit("setToken", res.data.idToken);
+        const token = res.data.idToken;
+        commit("setToken", token);
+        localStorage.setItem("token", token);
       })
       .catch(error => console.log(error));
   },
+  initAuth ({ commit }) {
+    const token = localStorage.getItem("token");
+    if (!token) {
+      return false;
+    }
+
+    commit("setToken", token);
+  },
   logoutUser ({ commit }) {
     commit("destroyToken");
+    localStorage.removeItem("token");
   },
   async addPost ({ commit }, post) {
     try {
